@@ -1,14 +1,44 @@
 <?php
 
+// add_action( 'init', 'verify_user_code' );
+// function verify_user_code(){
+//     if(isset($_GET['act'])){
+//         $data = unserialize(base64_decode($_GET['act']));
+//         $code = get_user_meta($data['id'], 'activation_code', true);
+//         // verify whether the code given is the same as ours
+//         if($code == $data['code']){
+//             // update the user meta
+//             update_user_meta($data['id'], 'is_activated', 1);
+//             wc_add_notice( __( '<strong>Success:</strong> Your account has been activated! ', 'text-domain' )  );
+//         }
+//     }
+// }
+
 function login(){
     
      if (is_user_logged_in())
     {
+        
      
         
-      return "<div class='no-login'>Already logged in and  visit this page </div>";
+      echo "<div class='no-login'>Already logged in and  visit this page </div>";
     }
     
+    
+    else{
+        
+    //       if(isset($_GET['act'])){
+    //     $data = unserialize(base64_decode($_GET['act']));
+    //     $code = get_user_meta($data['id'], 'activation_code', true);
+    //     // verify whether the code given is the same as ours
+    //     if($code == $data['code']){
+    //         // update the user meta
+    //         update_user_meta($data['id'], 'is_activated', 1);
+    //          echo "<script type='text/javascript'>window.location.href='". home_url() ."'</script>";  
+    //   exit();
+    //         // wc_add_notice( __( '<strong>Success:</strong> Your account has been activated! ', 'text-domain' )  );
+    //     }
+    // }
     
     if (isset($_POST['submit']) and $_POST['action'] == 'user_login')
         {
@@ -24,6 +54,7 @@ function login(){
            $email= sanitize_text_field($_POST['user_email']);
            $password= sanitize_text_field($_POST['password']);
            
+           
         $ar=array();
 	$user = apply_filters( 'authenticate', null, $email, $password );
 
@@ -36,19 +67,21 @@ else
 {
 	
  $ar['Error']=1;
- $ar['Message']="Login details are correct";
+ $ar['Message']="logged in successfully";
  $ar['user_id']=$user->ID ;
  $user_id=$user->ID ;
  wp_set_current_user( $user_id, $user->user_login );
     wp_set_auth_cookie( $user_id );
     do_action( 'wp_login', $user->user_login, $user );
-   
-   
+     echo "<script type='text/javascript'>window.location.href='". home_url() ."'</script>";  
+       exit();
+        
+
 	
 } 
 	 
 
-return  $ar ;
+ print_r($ar);
         
         
         }
@@ -86,6 +119,6 @@ return  $ar ;
  
  <?php
         }
-        
+    }  
     
 }
