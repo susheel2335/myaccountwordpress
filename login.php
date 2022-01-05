@@ -1,5 +1,5 @@
 <?php
-
+ // issue 1 remove garbase 
 // add_action( 'init', 'verify_user_code' );
 // function verify_user_code(){
 //     if(isset($_GET['act'])){
@@ -19,13 +19,15 @@ function login(){
      if (is_user_logged_in())
     {
         
-     
+      // issue 2 correct message show profile page here 
         
       echo "<div class='no-login'>Already logged in and  visit this page </div>";
     }
     
     
     else{
+	    
+	     // issue 4 remove garbase 
         
     //       if(isset($_GET['act'])){
     //     $data = unserialize(base64_decode($_GET['act']));
@@ -68,11 +70,15 @@ else
 	
  $ar['Error']=1;
  $ar['Message']="logged in successfully";
+	
+	 // issue 5  two time data was taken from the object get data only 1 time if require 
  $ar['user_id']=$user->ID ;
  $user_id=$user->ID ;
  wp_set_current_user( $user_id, $user->user_login );
     wp_set_auth_cookie( $user_id );
     do_action( 'wp_login', $user->user_login, $user );
+	
+	// issue 6 can we ask user to set redirect from the setting or some where 
      echo "<script type='text/javascript'>window.location.href='". home_url() ."'</script>";  
        exit();
         
@@ -80,12 +86,12 @@ else
 	
 } 
 	 
-
+// issue 7 remove extra print from here
  print_r($ar);
         
         
         }
-        
+        // issue 8 no need for the else statement 
         else {
             
     ?>
