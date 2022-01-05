@@ -68,7 +68,7 @@ if (0 === preg_match("/.{6,}/", $_POST['password']))
     {  
     $errors['password'] = "Password must be at least six characters";  
     }  
-  
+  // issue 71 remove garbase 
 // Check password confirmation_matches  
   
 // if (0 !== strcmp($_POST['password'], $_POST['password_confirmation']))  
@@ -82,7 +82,7 @@ if (0 === preg_match("/.{6,}/", $_POST['password']))
 //     {  
 //     $errors['terms'] = "You must agree to Terms of Service";  
 //     }  
-  
+  // issue 85  incorrect way to check if 
 if (0 === count($errors))  
     {  
     $password = $_POST['password'];  
@@ -90,6 +90,9 @@ if (0 === count($errors))
   
     // You could do all manner of other things here like send an email to the user, etc. I leave that to you.  
   
+	
+	// issue 94 what is use of this success variable and where it is used
+	
     $success = 1;  
     header('Location:' . get_bloginfo('url') . '/login/?success=1&u=' . $username);  
 
